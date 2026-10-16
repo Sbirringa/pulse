@@ -62,6 +62,9 @@ export const api = {
   setCity: (city: string | null) => call<Me>("PATCH", "/me", { city }),
   register: (nickname: string, password: string, city: string | null, consent: boolean) =>
     call<AuthResult>("POST", "/auth/register", { nickname, password, city, consent }),
+  changePassword: (current_password: string, new_password: string) =>
+    call<void>("POST", "/me/password", { current_password, new_password }),
+  newRecoveryCode: (password: string) => call<{ recovery_code: string }>("POST", "/me/recovery-code", { password }),
   deleteAccount: (password: string) => call<void>("POST", "/me/delete", { password }),
   login: (nickname: string, password: string) =>
     call<AuthResult>("POST", "/auth/login", { nickname, password }),

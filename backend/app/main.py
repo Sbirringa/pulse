@@ -144,6 +144,7 @@ async def security_headers(request: Request, call_next):
 FIELD_MESSAGES = {
     "password": "La password deve avere tra 10 e 128 caratteri.",
     "new_password": "La nuova password deve avere tra 10 e 128 caratteri.",
+    "current_password": "Password attuale non valida.",
     "title": "Il titolo deve avere tra 10 e 160 caratteri.",
     "description": "La descrizione può avere al massimo 600 caratteri.",
     "value": "Voto non valido.",
@@ -226,6 +227,15 @@ class RecoverIn(BaseModel):
 
 
 class DeleteIn(BaseModel):
+    password: str = Field(max_length=128)
+
+
+class PasswordChangeIn(BaseModel):
+    current_password: str = Field(max_length=128)
+    new_password: str = Field(min_length=10, max_length=128)
+
+
+class PasswordIn(BaseModel):
     password: str = Field(max_length=128)
 
 
@@ -481,6 +491,36 @@ def update_me(body: CityIn, user: User = Depends(current_user), db: Session = De
     user.city = body.city
     db.commit()
     return user_out(db, user)
+
+
+@app.post("/api/me/password", status_code=204)
+def change_password(body: PasswordChangeIn, response: Response, user: User = Depends(current_user),
+                    db: Session = Depends(get_db)):
+    """Cambia la password. Le sessioni aperte su altri dispositivi decadono; questa resta aperta.
+    Il codice di recupero non cambia (si vede solo una volta, non è leggibile dall'account):
+    se serve se ne genera uno nuovo con /api/me/recovery-code."""
+    if RATE_LIMIT_ENABLED and not limiter.allow(f"pwchange:{user.id}", 8, 600):
+        raise HTTPException(429, "Troppi tentativi. Riprova tra qualche minuto.")
+    if not verify_secret(user.password_hash, body.current_password):
+        raise HTTPException(403, "La password attuale non è corretta.")
+    if body.new_password == body.current_password:
+        raise HTTPException(422, "La nuova password deve essere diversa da quella attuale.")
+    user.password_hash = hash_secret(body.new_password)
+    db.commit()
+    set_session_cookie(response, user)  # nuova sessione per questo dispositivo
+
+
+@app.post("/api/me/recovery-code")
+def regenerate_recovery(body: PasswordIn, user: User = Depends(current_user), db: Session = Depends(get_db)):
+    """Nuovo codice di recupero (il vecchio smette subito di funzionare). Serve la password."""
+    if RATE_LIMIT_ENABLED and not limiter.allow(f"recovery-new:{user.id}", 5, 3600):
+        raise HTTPException(429, "Troppi tentativi. Riprova più tardi.")
+    if not verify_secret(user.password_hash, body.password):
+        raise HTTPException(403, "La password non è corretta.")
+    code = new_recovery_code()
+    user.recovery_hash = hash_secret(normalize_code(code))
+    db.commit()
+    return {"recovery_code": code}
 
 
 @app.post("/api/me/delete", status_code=204)

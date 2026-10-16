@@ -59,6 +59,25 @@ const Art = {
       <path d="M238 72 V96 L256 106" stroke="#ffd27a" strokeWidth="6" fill="none" strokeLinecap="round" />
     </svg>
   ),
+  bus: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
+      <rect width="320" height="200" fill="#161d38" />
+      {[30, 90, 150, 210, 270].map((x, i) => (
+        <rect key={x} x={x} y={40 + (i % 2) * 18} width="34" height={110 - (i % 2) * 18} fill="#232c4d" />
+      ))}
+      {[38, 98, 158, 218, 278].map((x) => (
+        <rect key={x} x={x} y="70" width="8" height="8" fill="#ffd27a" opacity=".8" />
+      ))}
+      <rect y="150" width="320" height="50" fill="#1f2740" />
+      <rect x="70" y="110" width="180" height="58" rx="14" fill="#9aa8ff" />
+      {[86, 126, 166, 206].map((x) => (
+        <rect key={x} x={x} y="120" width="30" height="20" rx="4" fill="#0e1322" />
+      ))}
+      <circle cx="105" cy="170" r="11" fill="#0b0f1c" />
+      <circle cx="215" cy="170" r="11" fill="#0b0f1c" />
+      <circle cx="244" cy="152" r="5" fill="#ffd27a" />
+    </svg>
+  ),
   parco: (
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <rect width="320" height="200" fill="#1a2a2a" />
@@ -90,9 +109,9 @@ export interface Example {
 
 export const EXAMPLES: Example[] = [
   { title: "Settimana lavorativa di 4 giorni, a parità di stipendio?", description: "Più tempo e benessere, o costi che le aziende non reggono?", category: "Lavoro", place: "Tutta Italia", left: "Ancora 3 giorni", art: Art.calendario, pct: { yes: 61, depends: 24, no: 15 }, total: 2140 },
-  { title: "Etichetta obbligatoria su foto e video creati con l'IA?", description: "Per non confondere notizie vere e contenuti generati.", category: "Tecnologia", place: "Tutta Italia", left: "Ancora 1 settimana", art: Art.telefono, pct: { yes: 78, depends: 12, no: 10 }, total: 1520 },
-  { title: "Visite specialistiche entro 30 giorni o rimborso del privato?", description: "Mesi di attesa per un esame: chi paga se il pubblico non ce la fa?", category: "Sanità", place: "Tutta Italia", left: "Ancora 5 ore", art: Art.sanita, pct: { yes: 66, depends: 19, no: 15 }, total: 3080 },
-  { title: "Più verde e meno parcheggi nel centro della tua città?", description: "Alberi e piazze vivibili, o più difficile arrivare in centro?", category: "Città", place: "La tua città", left: "Concluso", art: Art.parco, pct: { yes: 44, depends: 22, no: 34 }, total: 486 },
+  { title: "Più verde e meno parcheggi nel centro della tua città?", description: "Alberi e piazze vivibili, o più difficile arrivare in centro?", category: "Città", place: "La tua città", left: "Ancora 1 settimana", art: Art.parco, pct: { yes: 44, depends: 22, no: 34 }, total: 486 },
+  { title: "Etichetta obbligatoria su foto e video creati con l'IA?", description: "Per non confondere notizie vere e contenuti generati.", category: "Tecnologia", place: "Tutta Italia", left: "Ancora 5 ore", art: Art.telefono, pct: { yes: 78, depends: 12, no: 10 }, total: 1520 },
+  { title: "Bus notturni anche nel fine settimana?", description: "Più sicurezza per chi esce la sera, ma servono fondi.", category: "Trasporti", place: "La tua città", left: "Concluso", art: Art.bus, pct: { yes: 58, depends: 25, no: 17 }, total: 731 },
 ];
 
 /** Come appare un sondaggio: usata per gli esempi e per l'anteprima mentre lo crei. */
@@ -189,51 +208,32 @@ const PostArt = {
       <path d="M268 44 v52 m-14 -14 l14 14 l14 -14" stroke="#ff6e7f" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
-  // benzina: la pompa e il prezzo che sale
-  benzina: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="320" height="200" fill="#2a1f33" />
-      <rect y="166" width="320" height="34" fill="#3a2b45" />
-      <rect x="70" y="40" width="84" height="128" rx="10" fill="#ff6e7f" />
-      <rect x="82" y="54" width="60" height="38" rx="6" fill="#0e1322" />
-      <text x="112" y="80" textAnchor="middle" fontSize="18" fontWeight="800" fill="#ffd27a" fontFamily="sans-serif">2,0</text>
-      <rect x="82" y="104" width="60" height="10" rx="5" fill="#f6f7fb" opacity=".8" />
-      <path d="M154 70 h22 a10 10 0 0 1 10 10 v54 a10 10 0 0 0 20 0 v-42 l-14 -14" stroke="#f6f7fb" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M222 126 l22 -26 l18 14 l26 -40" stroke="#c8ff3d" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M272 70 h18 v18" stroke="#c8ff3d" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
-  // scuola: un banco con un cuore (supporto psicologico)
-  scuola: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="320" height="200" fill="#16263a" />
-      <rect x="40" y="26" width="240" height="96" rx="8" fill="#1f4a3a" />
-      <rect x="40" y="26" width="240" height="96" rx="8" fill="none" stroke="#c9a640" strokeWidth="6" />
-      <path d="M160 96 C120 70 128 42 148 46 C156 48 160 56 160 56 C160 56 164 48 172 46 C192 42 200 70 160 96 Z" fill="#ff6e7f" />
-      <rect x="70" y="140" width="180" height="12" rx="4" fill="#c9a640" />
-      <rect x="86" y="152" width="8" height="36" fill="#3a4260" />
-      <rect x="226" y="152" width="8" height="36" fill="#3a4260" />
-      <rect x="120" y="126" width="34" height="14" rx="3" fill="#9aa8ff" />
-      <rect x="160" y="130" width="40" height="10" rx="3" fill="#ffd27a" />
-    </svg>
-  ),
-  mercato: (
+  // strada piena di buche (problema della città)
+  buche: (
     <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
       <rect width="320" height="200" fill="#1b2236" />
-      <rect y="150" width="320" height="50" fill="#232b45" />
-      {[8, 112, 216].map((x, i) => (
-        <g key={x}>
-          <rect x={x + 4} y="40" width="5" height="112" fill="#3a4260" />
-          <rect x={x + 87} y="40" width="5" height="112" fill="#3a4260" />
-          <rect x={x} y="88" width="96" height="64" rx="5" fill="#2c3554" />
-          {[0, 1, 2, 3, 4, 5].map((k) => (
-            <rect key={k} x={x + k * 16} y="44" width="16" height="40" fill={k % 2 ? "#f6f7fb" : ["#ff6e7f", "#c8ff3d", "#9aa8ff"][i]} />
-          ))}
-          <circle cx={x + 24} cy="120" r="12" fill="#ffd27a" />
-          <circle cx={x + 50} cy="122" r="11" fill="#ff9aa6" />
-          <circle cx={x + 74} cy="119" r="12" fill="#7fe0d0" />
-        </g>
+      <path d="M120 60 L200 60 L320 200 L0 200 Z" fill="#3a4260" />
+      <path d="M160 70 v14 M160 100 v18 M160 136 v24 M160 178 v22" stroke="#ffd27a" strokeWidth="5" strokeLinecap="round" />
+      <ellipse cx="110" cy="150" rx="34" ry="12" fill="#0e1322" />
+      <ellipse cx="110" cy="147" rx="26" ry="7" fill="#232b45" />
+      <ellipse cx="214" cy="118" rx="22" ry="8" fill="#0e1322" />
+      <ellipse cx="190" cy="176" rx="28" ry="10" fill="#0e1322" />
+      <path d="M262 58 l26 46 h-52 Z" fill="#ffd27a" />
+      <rect x="259" y="72" width="6" height="18" rx="3" fill="#0e1322" />
+      <circle cx="262" cy="96" r="3.5" fill="#0e1322" />
+      <rect x="259" y="104" width="6" height="40" fill="#949db6" />
+    </svg>
+  ),
+  tramonto: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="320" height="200" fill="#2a2347" />
+      <rect y="70" width="320" height="60" fill="#5a3a63" />
+      <circle cx="210" cy="118" r="34" fill="#ffb27a" />
+      <rect y="118" width="320" height="82" fill="#1b2236" />
+      {[132, 146, 160].map((y, i) => (
+        <rect key={y} x={150 + i * 12} y={y} width={120 - i * 24} height="4" rx="2" fill="#ffb27a" opacity={0.6 - i * 0.15} />
       ))}
+      <path d="M0 118 V84 h22 v-18 h18 v30 h20 v-40 h26 v52 h16 v-24 h20 v34 Z" fill="#11162a" />
     </svg>
   ),
 };
@@ -251,10 +251,10 @@ export interface PostExample {
 }
 
 export const POST_EXAMPLES: PostExample[] = [
+  { place: "La tua città", body: "Via Roma è piena di buche da mesi: ieri un ragazzo è caduto con lo scooter. Lo segnaliamo tutti insieme al Comune?", art: PostArt.buche, comments: 38, supports: 96 },
   { place: "Tutta Italia", body: "Laurea, cinque anni di esperienza e 1.400 € al mese. L'affitto se ne porta via più della metà. Succede solo a me o è normale?", art: PostArt.stipendio, comments: 127, supports: 312 },
-  { place: "Tutta Italia", body: "Benzina di nuovo sopra i 2 € al litro. Per chi va al lavoro in macchina sono quasi 150 € al mese. Voi come vi organizzate?", art: PostArt.benzina, comments: 64, supports: 189 },
-  { place: "Tutta Italia", headline: "Uno psicologo gratuito in ogni scuola superiore", body: "Ansia, pressione, solitudine: tanti ragazzi non sanno a chi chiedere aiuto.", art: PostArt.scuola, comments: 41, supports: 14, goal: 20 },
-  { place: "La tua città", body: "Domenica mercatino dell'usato in piazza, dalle 10. Chi porta cosa? Servono tavoli e qualcuno per la musica.", art: PostArt.mercato, comments: 14, supports: 26 },
+  { place: "La tua città", headline: "Lampioni nuovi al belvedere", body: "La sera è completamente al buio e non ci va più nessuno.", art: PostArt.tramonto, comments: 8, supports: 14, goal: 20 },
+  { place: "Tutta Italia", body: "Ho prenotato una risonanza: prima data utile tra otto mesi. Nel privato, la settimana prossima. Vi è mai capitato?", art: Art.sanita, comments: 74, supports: 205 },
 ];
 
 /** Come appare un post (per gli esempi): stessa card dei post veri. */

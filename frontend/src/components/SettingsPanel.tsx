@@ -3,6 +3,7 @@ import { LogOut, MapPin, ShieldCheck, X } from "lucide-react";
 import { api, errMsg } from "../api";
 import { useNav } from "../nav";
 import type { Me } from "../types";
+import AccountSecurity from "./AccountSecurity";
 import DeleteAccount from "./DeleteAccount";
 import CityPicker, { CityField } from "./map/CityPicker";
 
@@ -145,6 +146,8 @@ export default function SettingsPanel({
         <CitySetting me={me} onCityChange={onCityChange} />
         <Places me={me} />
       </section>
+
+      <AccountSecurity />
 
       <section className="card p-5">
         <p className="flex items-center gap-2 text-sm font-bold">
