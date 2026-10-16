@@ -105,7 +105,7 @@ function GuestHero() {
         <span className="text-zinc-400">Ascolta gli altri.</span>
       </h1>
       <p className="mt-4 max-w-sm text-[15px] leading-6 text-zinc-300">
-        Il battito della tua città: racconta cosa succede dove vivi, rispondi ai sondaggi con un tocco e guarda come la pensano
+        Racconta cosa succede dove vivi, rispondi ai sondaggi con un tocco e guarda come la pensano
         le persone, città per città.
       </p>
       <div className="mt-5 flex items-center gap-3 text-xs font-semibold text-zinc-400" aria-hidden>

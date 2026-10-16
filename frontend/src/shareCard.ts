@@ -110,7 +110,7 @@ export function renderPulseCard(data: PulseData, nickname: string): Promise<Blob
   // piè di pagina
   ctx.fillStyle = "#f4f4f2";
   ctx.font = font(46, 900);
-  ctx.fillText("Il battito della tua città.", 80, 1230);
+  ctx.fillText("Discuti. Vota. Partecipa.", 80, 1230);
   ctx.fillStyle = "#a1a1a0";
   ctx.font = font(30, 500);
   ctx.fillText(window.location.host, 80, 1280);

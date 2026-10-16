@@ -855,14 +855,11 @@ def shared_question(qid: int, db: Session = Depends(get_db)):
     if q and q.status == "approved" and can_see(db, None, q.author_id):  # profilo privato: niente anteprima
         title = html.escape(f"PULSE · {q.title}", quote=True)
         desc = html.escape("Un sondaggio su PULSE: tu cosa ne pensi?", quote=True)
-        tags = (
-            f'<meta property="og:title" content="{title}">'
-            f'<meta property="og:description" content="{desc}">'
-            f'<meta property="og:type" content="website">'
-            f'<meta name="twitter:card" content="summary">'
-        )
+        # sostituisce titolo e descrizione generici (WhatsApp & co. leggono il primo che trovano)
+        page = re.sub(r'<meta property="og:title"[^>]*>', f'<meta property="og:title" content="{title}">', page, count=1)
+        page = re.sub(r'<meta property="og:description"[^>]*>', f'<meta property="og:description" content="{desc}">', page, count=1)
         page = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", page, count=1, flags=re.S)
-        page = page.replace("</head>", tags + "</head>", 1)
+        page = page.replace("</head>", '<meta name="twitter:card" content="summary"></head>', 1)
     return HTMLResponse(page)
 
 

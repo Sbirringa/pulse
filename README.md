@@ -1,4 +1,6 @@
-# PULSE — il battito della tua città
+# PULSE
+
+**Discuti. Vota. Partecipa.**
 
 PULSE è un'app civica open source: le persone raccontano cosa succede dove vivono, fanno proposte e votano
 sondaggi sulla loro città o su tutta Italia. È pensata per la partecipazione, non per il rumore: niente
