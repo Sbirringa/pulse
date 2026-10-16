@@ -3,7 +3,7 @@
 All'avvio l'app esegue `upgrade head`: un database vuoto viene creato da zero, uno esistente viene
 aggiornato all'ultima versione senza perdere dati.
 
-Un database creato dalla prima versione di PULSE (tabelle fatte con create_all, senza tabella
+Un database creato dalla prima versione di Pulse (tabelle fatte con create_all, senza tabella
 `alembic_version`) viene riconosciuto e "adottato" come revisione 0001, poi aggiornato.
 
 Per creare una nuova migrazione dopo aver modificato app/models.py (dalla cartella backend):

@@ -104,7 +104,7 @@ export default function PostCard({
   const long = post.body.length > 280;
 
   async function share() {
-    const r = await shareLink({ title: "PULSE", text: post.body.slice(0, 80) || "Un post su PULSE", path: `/p/${post.id}` });
+    const r = await shareLink({ title: "Pulse", text: post.body.slice(0, 80) || "Un post su Pulse", path: `/p/${post.id}` });
     if (r === "copied") {
       setNote("Link copiato.");
       setTimeout(() => setNote(""), 2500);

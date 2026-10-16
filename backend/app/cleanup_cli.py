@@ -1,6 +1,6 @@
 """Pulizia da amministratore: togli i contenuti di un utente (post, commenti, sondaggi, voti) o l'intero account.
 
-In locale, dalla cartella del progetto (anche con PULSE accesa):
+In locale, dalla cartella del progetto (anche con Pulse accesa):
     backend\\.venv\\Scripts\\python tools\\pulisci.py              elenco utenti con quanto hanno pubblicato
     backend\\.venv\\Scripts\\python tools\\pulisci.py mario       riepilogo di @mario e menu di pulizia
 In produzione su Fly.io:
@@ -126,7 +126,7 @@ def _confirm(nick: str, what: str, yes: bool) -> bool:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="Ripulisci i contenuti di un utente di PULSE")
+    ap = argparse.ArgumentParser(description="Ripulisci i contenuti di un utente di Pulse")
     ap.add_argument("nickname", nargs="?", help="nome utente (senza nome: elenco di tutti con i conteggi)")
     g = ap.add_mutually_exclusive_group()
     g.add_argument("--tutto", action="store_true", help="cancella post, commenti, sondaggi e voti (l'account resta)")

@@ -88,7 +88,7 @@ export default function PollCard({
   }
 
   async function share() {
-    const r = await shareLink({ title: "PULSE", text: `Tu cosa ne pensi? "${poll.title}"`, path: `/q/${poll.id}` });
+    const r = await shareLink({ title: "Pulse", text: `Tu cosa ne pensi? "${poll.title}"`, path: `/q/${poll.id}` });
     if (r === "copied") {
       setNote("Link copiato.");
       setTimeout(() => setNote(""), 2500);

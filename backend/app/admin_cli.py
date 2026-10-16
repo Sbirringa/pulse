@@ -30,7 +30,7 @@ def _list_users(db) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="Nomina un amministratore di PULSE")
+    ap = argparse.ArgumentParser(description="Nomina un amministratore di Pulse")
     ap.add_argument("nickname", nargs="?", help="il nome utente (senza @); senza nome mostra gli utenti registrati")
     ap.add_argument("--rimuovi", action="store_true", help="toglie il ruolo di amministratore")
     args = ap.parse_args(argv)

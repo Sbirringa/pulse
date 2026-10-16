@@ -24,7 +24,7 @@ export async function shareImage(blob: Blob, filename: string, text: string): Pr
   const file = new File([blob], filename, { type: blob.type });
   try {
     if (navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file], title: "PULSE", text });
+      await navigator.share({ files: [file], title: "Pulse", text });
       return "shared";
     }
   } catch (e) {

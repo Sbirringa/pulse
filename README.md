@@ -1,8 +1,8 @@
-# PULSE
+# Pulse
 
 **Discuti. Vota. Partecipa.**
 
-PULSE è un'app civica open source: le persone raccontano cosa succede dove vivono, fanno proposte e votano
+Pulse è un'app civica open source: le persone raccontano cosa succede dove vivono, fanno proposte e votano
 sondaggi sulla loro città o su tutta Italia. È pensata per la partecipazione, non per il rumore: niente
 algoritmi di engagement, voti segreti e dati personali cifrati.
 
@@ -155,7 +155,7 @@ Il test `test_schema_matches_models` segnala le migrazioni dimenticate.
 
 ## Limiti noti
 
-- Non c'è verifica dell'identità: un account non equivale a una persona. I risultati sono *degli utenti di PULSE*,
+- Non c'è verifica dell'identità: un account non equivale a una persona. I risultati sono *degli utenti di Pulse*,
   non sondaggi rappresentativi, e l'app lo dichiara.
 - I limiti di frequenza sono in memoria: valgono con una sola istanza. Per più istanze serve uno store condiviso
   (es. Redis).
@@ -168,7 +168,7 @@ sicurezza segui [SECURITY.md](SECURITY.md).
 
 ## Licenza
 
-PULSE è software libero, rilasciato sotto **GNU Affero General Public License v3.0** (vedi [LICENSE](LICENSE)).
+Pulse è software libero, rilasciato sotto **GNU Affero General Public License v3.0** (vedi [LICENSE](LICENSE)).
 Puoi usare, studiare, modificare e ridistribuire il codice. Se lo usi per offrire un servizio online, anche
 modificato, devi rendere disponibile il codice sorgente delle tue modifiche agli utenti di quel servizio.
 

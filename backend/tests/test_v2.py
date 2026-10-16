@@ -167,7 +167,7 @@ def test_legacy_v1_database_is_adopted_and_upgraded():
 
 
 def test_upgrade_removes_pulse_polls_but_keeps_people_polls():
-    """Aggiornando da 0006: spariscono i sondaggi "di PULSE" (con i loro voti), restano quelli delle persone."""
+    """Aggiornando da 0006: spariscono i sondaggi "di Pulse" (con i loro voti), restano quelli delle persone."""
     path = os.path.join(tempfile.mkdtemp(), "v6.db")
     url = f"sqlite:///{path}"
     command.upgrade(alembic_config(url), "0006")
@@ -178,7 +178,7 @@ def test_upgrade_removes_pulse_polls_but_keeps_people_polls():
             "approve_followers, created_at) values ('u1', 'x', 'k1', 'h', 'r', 0, 0, 1, '2026-10-01 10:00:00')"))
         conn.execute(text(
             "insert into questions (id, seed_key, title, description, category, scope, status, created_at, ended_notified) "
-            "values (1, 'n01', 'Di PULSE', '', 'Lavoro', 'national', 'approved', '2026-10-01', 0), "
+            "values (1, 'n01', 'Di Pulse', '', 'Lavoro', 'national', 'approved', '2026-10-01', 0), "
             "(2, null, 'Di una persona', '', 'Lavoro', 'national', 'approved', '2026-10-01', 0)"))
         conn.execute(text("update questions set author_id = 'u1' where id = 2"))
         conn.execute(text("insert into votes (user_id, question_id, value, created_at, updated_at) values "

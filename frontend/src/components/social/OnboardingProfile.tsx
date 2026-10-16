@@ -56,13 +56,13 @@ export default function OnboardingProfile({ me, onDone }: { me: Me; onDone: (m: 
           />
         </label>
         <p className="mt-2 text-xs text-zinc-500">
-          Chiunque visiti PULSE vedrà nome, foto e @{me.nickname}. I tuoi voti ai sondaggi restano sempre anonimi.
+          Chiunque visiti Pulse vedrà nome, foto e @{me.nickname}. I tuoi voti ai sondaggi restano sempre anonimi.
         </p>
         {error && <p role="alert" className="mt-3 rounded-xl bg-no/10 px-3 py-2 text-sm text-no">{error}</p>}
 
         <div className="mt-auto pt-8">
           <button disabled={busy} className="w-full rounded-2xl bg-pulse py-4 text-base font-extrabold text-ink transition hover:brightness-110 active:scale-[0.99] disabled:opacity-50">
-            {busy ? "Salvo…" : name.trim() || avatar ? "Entra in PULSE" : "Continua"}
+            {busy ? "Salvo…" : name.trim() || avatar ? "Entra in Pulse" : "Continua"}
           </button>
           <button type="button" onClick={() => onDone({ avatar })} className="mt-3 w-full py-2 text-sm font-semibold text-zinc-500 hover:text-white">
             Lo faccio dopo

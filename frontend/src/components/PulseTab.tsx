@@ -33,7 +33,7 @@ export default function PulseTab({
     setNote("");
     try {
       const blob = await renderPulseCard(data, me.nickname);
-      const r = await shareImage(blob, "il-mio-pulse.png", "Come la penso su PULSE. E tu?");
+      const r = await shareImage(blob, "il-mio-pulse.png", "Come la penso su Pulse. E tu?");
       setNote(r === "downloaded" ? "Card salvata: condividila dove vuoi." : "");
     } catch (e) {
       setNote(errMsg(e));

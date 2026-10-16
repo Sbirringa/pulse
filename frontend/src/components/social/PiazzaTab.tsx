@@ -119,7 +119,7 @@ function GuestHero() {
       </div>
       <div className="mt-6 flex gap-2">
         <button onClick={() => requireAuth()} className="rounded-2xl bg-pulse px-5 py-3 text-sm font-bold text-ink transition hover:brightness-110 active:scale-[0.98]">
-          Unisciti a PULSE
+          Unisciti a Pulse
         </button>
         <button onClick={() => requireAuth(undefined, "login")} className="rounded-2xl bg-white/[0.07] px-5 py-3 text-sm font-semibold hover:bg-white/[0.12]">
           Accedi
@@ -418,7 +418,7 @@ export default function PiazzaTab({
           </p>
           {!me && (
             <button onClick={() => requireAuth()} className="mt-5 rounded-full bg-pulse px-5 py-2.5 text-sm font-bold text-ink hover:brightness-110">
-              Unisciti a PULSE
+              Unisciti a Pulse
             </button>
           )}
         </div>

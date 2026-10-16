@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ripulisce i contenuti di un utente di PULSE (in locale), anche con PULSE accesa.
+"""Ripulisce i contenuti di un utente di Pulse (in locale), anche con Pulse accesa.
 
 Dalla cartella del progetto:
     backend\\.venv\\Scripts\\python tools\\pulisci.py            elenco utenti con quanto hanno pubblicato

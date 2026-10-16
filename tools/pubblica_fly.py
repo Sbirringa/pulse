@@ -1,10 +1,10 @@
-"""PULSE online su Fly.io + Neon, passo passo.
+"""Pulse online su Fly.io + Neon, passo passo.
 
 Lancialo dalla cartella pulse:   python tools\\pubblica_fly.py
 
 Cosa fa:
   1. crea le chiavi segrete UNA volta sola e le salva FUORI dalla cartella pulse
-     (C:\\Users\\<te>\\PULSE-CHIAVI-PRIVATE.txt): se rilanci lo script le riusa, non le cambia mai;
+     (C:\\Users\\<te>\\Pulse-CHIAVI-PRIVATE.txt): se rilanci lo script le riusa, non le cambia mai;
   2. crea l'app su Fly con il nome che scegli (il link sarà https://NOME.fly.dev);
   3. passa a Fly i segreti (database Neon, chiavi, titolare, email) senza scriverli nella cronologia;
   4. crea l'archivio per le foto (Tigris);
@@ -23,7 +23,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-KEYS = Path.home() / "PULSE-CHIAVI-PRIVATE.txt"
+KEYS = Path.home() / "Pulse-CHIAVI-PRIVATE.txt"
 FLY_TOML = ROOT / "fly.toml"
 
 
@@ -128,7 +128,7 @@ def main() -> None:
         sys.exit("Servono titolare ed email valide. Rilancia lo script.")
 
     KEYS.write_text(
-        "# PULSE - CHIAVI PRIVATE. Copia tutto nel tuo password manager.\n"
+        "# Pulse - CHIAVI PRIVATE. Copia tutto nel tuo password manager.\n"
         "# Non metterle su GitHub e non mandarle a nessuno. Senza PULSE_DATA_KEY i dati cifrati sono persi per sempre.\n"
         + "".join(f"{k}={v}\n" for k, v in keys.items()), encoding="utf-8")
     print(f"Chiavi salvate in: {KEYS}")
@@ -143,7 +143,7 @@ def main() -> None:
             msg = (r.stdout or "") + (r.stderr or "")
             if "taken" in msg.lower() or "already" in msg.lower():
                 keys.pop("FLY_APP")
-                KEYS.write_text("# PULSE - CHIAVI PRIVATE.\n" + "".join(f"{k}={v}\n" for k, v in keys.items()), encoding="utf-8")
+                KEYS.write_text("# Pulse - CHIAVI PRIVATE.\n" + "".join(f"{k}={v}\n" for k, v in keys.items()), encoding="utf-8")
                 sys.exit(f"Il nome «{name}» è già preso su Fly. Rilancia lo script e scegline un altro.")
             sys.exit(f"Non riesco a creare l'app:\n{msg.strip()}")
         print(f"Creata l'app {name}.")
@@ -177,7 +177,7 @@ def main() -> None:
         try:
             with urllib.request.urlopen(f"{site}/api/health", timeout=15) as r:
                 if r.status == 200:
-                    print(f"\n✅ PULSE è online: {site}")
+                    print(f"\n✅ Pulse è online: {site}")
                     break
         except Exception:
             time.sleep(6)

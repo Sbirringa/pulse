@@ -1,6 +1,6 @@
 {
-  "name": "PULSE",
-  "short_name": "PULSE",
+  "name": "Pulse",
+  "short_name": "Pulse",
   "description": "Discuti. Vota. Partecipa.",
   "start_url": "/",
   "display": "standalone",

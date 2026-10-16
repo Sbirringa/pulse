@@ -25,16 +25,16 @@ function Item({ icon, title, text, badge, onClick, href }: {
   return href ? <a href={href} className={cls}>{inner}</a> : <button onClick={onClick} className={cls}>{inner}</button>;
 }
 
-/** Il menu in alto: cos'è PULSE, sicurezza, codice aperto, regole e privacy. */
+/** Il menu in alto: cos'è Pulse, sicurezza, codice aperto, regole e privacy. */
 export default function InfoMenu({ meta, onOpen, onClose }: { meta: Meta; onOpen: (s: InfoSlug) => void; onClose: () => void }) {
   return (
-    <Sheet title="PULSE" onClose={onClose}>
+    <Sheet title="Pulse" onClose={onClose}>
       <div className="mb-3 flex items-center gap-3 rounded-[1.5rem] bg-gradient-to-br from-pulse/[0.14] to-transparent p-4 ring-1 ring-white/[0.07]">
         <Logo />
         <p className="text-xs leading-5 text-zinc-400">Il polso della tua città, in tempo reale.</p>
       </div>
-      <nav aria-label="Informazioni su PULSE" className="space-y-0.5 pb-1">
-        <Item icon={<Orbit size={20} />} title="Ecosistema" text="Tutto quello che c'è dentro PULSE" onClick={() => onOpen("ecosistema")} />
+      <nav aria-label="Informazioni su Pulse" className="space-y-0.5 pb-1">
+        <Item icon={<Orbit size={20} />} title="Ecosistema" text="Tutto quello che c'è dentro Pulse" onClick={() => onOpen("ecosistema")} />
         <Item icon={<ShieldCheck size={20} />} title="Sicurezza" text="Crittografia, voto segreto, dati minimi" onClick={() => onOpen("sicurezza")} />
         <Item
           icon={<CodeXml size={20} />}

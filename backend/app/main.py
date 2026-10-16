@@ -79,13 +79,13 @@ CATEGORY_SET = set(CATEGORIES)
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     # crea o aggiorna lo schema (Alembic), anche su un database già esistente.
-    # Nessun sondaggio "di PULSE": i sondaggi li creano solo le persone.
+    # Nessun sondaggio "di Pulse": i sondaggi li creano solo le persone.
     run_migrations()
     yield
 
 
 app = FastAPI(
-    title="PULSE",
+    title="Pulse",
     lifespan=lifespan,
     docs_url=None if IS_PROD else "/api/docs",
     redoc_url=None,
@@ -844,26 +844,26 @@ def _index_html(request: Request | None = None) -> str | None:
     if request is not None:
         # le anteprime dei link (WhatsApp, Telegram…) vogliono l'indirizzo completo dell'immagine
         base = str(request.base_url).rstrip("/")
-        page = page.replace('content="/og.png"', f'content="{base}/og.png"')
+        page = page.replace('content="/og.jpg"', f'content="{base}/og.jpg"')
     return page
 
 
 NO_FRONTEND = HTMLResponse(
-    "<h1>PULSE API attiva</h1><p>Il frontend non è stato compilato. "
+    "<h1>Pulse API attiva</h1><p>Il frontend non è stato compilato. "
     "Esegui <code>npm run build</code> in <code>frontend/</code> oppure <code>python run_local.py</code>.</p>",
     status_code=200,
 )
 
 
-@app.get("/q/{qid}", include_in_schema=False)
+@app.api_route("/q/{qid}", methods=["GET", "HEAD"], include_in_schema=False)
 def shared_question(qid: int, request: Request, db: Session = Depends(get_db)):
     page = _index_html(request)
     if page is None:
         return NO_FRONTEND
     q = db.get(Question, qid)
     if q and q.status == "approved" and can_see(db, None, q.author_id):  # profilo privato: niente anteprima
-        title = html.escape(f"PULSE · {q.title}", quote=True)
-        desc = html.escape("Un sondaggio su PULSE: tu cosa ne pensi?", quote=True)
+        title = html.escape(f"Pulse · {q.title}", quote=True)
+        desc = html.escape("Un sondaggio su Pulse: tu cosa ne pensi?", quote=True)
         # sostituisce titolo e descrizione generici (WhatsApp & co. leggono il primo che trovano)
         page = re.sub(r'<meta property="og:title"[^>]*>', f'<meta property="og:title" content="{title}">', page, count=1)
         page = re.sub(r'<meta property="og:description"[^>]*>', f'<meta property="og:description" content="{desc}">', page, count=1)
@@ -871,7 +871,7 @@ def shared_question(qid: int, request: Request, db: Session = Depends(get_db)):
     return HTMLResponse(page)
 
 
-@app.get("/{full_path:path}", include_in_schema=False)
+@app.api_route("/{full_path:path}", methods=["GET", "HEAD"], include_in_schema=False)  # HEAD: alcuni lettori di anteprime controllano prima così
 def spa(full_path: str, request: Request):
     if full_path.startswith("api/"):
         raise HTTPException(404, "Not found")
@@ -879,6 +879,8 @@ def spa(full_path: str, request: Request):
         return NO_FRONTEND
     candidate = (STATIC_DIR / full_path).resolve()
     if full_path and candidate.is_file() and STATIC_DIR.resolve() in candidate.parents:
-        return FileResponse(candidate)
+        # immagine delle anteprime e icone: si possono tenere in cache (WhatsApp & co. le scaricano più in fretta)
+        cache = {"Cache-Control": "public, max-age=86400"} if candidate.suffix in (".jpg", ".png", ".svg", ".ico") else None
+        return FileResponse(candidate, headers=cache)
     page = _index_html(request)
     return HTMLResponse(page) if page else NO_FRONTEND

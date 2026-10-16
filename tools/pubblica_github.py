@@ -1,4 +1,4 @@
-"""PULSE su GitHub (repository pubblico), con controllo dei segreti prima di ogni invio.
+"""Pulse su GitHub (repository pubblico), con controllo dei segreti prima di ogni invio.
 
 Lancialo dalla cartella pulse:   python tools\\pubblica_github.py
 
@@ -23,9 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 IGNORE = [
     ".venv/", "__pycache__/", "*.pyc", ".pytest_cache/", "node_modules/", "frontend/dist/",
     "backend/data/", "*.db", "*.sqlite", "*.sqlite3", ".datakey", ".secret", ".env", "pulse.env",
-    "PULSE-CHIAVI*", "*.zip", "*.bak", "*.log", "aggiorna_*.py",
+    "Pulse-CHIAVI*", "*.zip", "*.bak", "*.log", "aggiorna_*.py",
 ]
-BAD_NAMES = re.compile(r"(^|/)(\.datakey|\.secret|\.env|pulse\.env|PULSE-CHIAVI[^/]*)$|\.(db|sqlite3?|bak|zip)$", re.I)
+BAD_NAMES = re.compile(r"(^|/)(\.datakey|\.secret|\.env|pulse\.env|Pulse-CHIAVI[^/]*)$|\.(db|sqlite3?|bak|zip)$", re.I)
 SECRETS = [
     (re.compile(r"npg_[A-Za-z0-9]{8,}"), "password di Neon"),
     (re.compile(r"postgres(?:ql)?(?:\+psycopg)?://[^\s:/'\"]+:(?!pass@|password@|\.\.\.|PASSWORD|utente)[^@\s'\"]{6,}@"), "connection string con password"),
@@ -131,7 +131,7 @@ def main() -> None:
             git("reset", "-q")
             sys.exit("Fermato. Non ho pubblicato niente.")
         first = git("rev-parse", "--verify", "HEAD", check=False) == ""
-        git("commit", "-q", "-m", "PULSE: prima pubblicazione" if first else "Aggiornamento di PULSE")
+        git("commit", "-q", "-m", "Pulse: prima pubblicazione" if first else "Aggiornamento di Pulse")
     else:
         print("Nessuna modifica da pubblicare.")
 

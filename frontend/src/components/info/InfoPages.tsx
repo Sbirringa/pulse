@@ -116,9 +116,9 @@ function Ecosistema({ go, meta }: { go: Go; meta: Meta }) {
   const minRes = meta.privacy?.min_results ?? 5;
   return (
     <>
-      <Hero kicker="L'ecosistema PULSE" title={<>Il polso della tua città, <span className="text-pulse">in tempo reale.</span></>} icon={<Activity size={22} />}>
+      <Hero kicker="L'ecosistema Pulse" title={<>Il polso della tua città, <span className="text-pulse">in tempo reale.</span></>} icon={<Activity size={22} />}>
         <p>
-          PULSE non è l'ennesimo social dove si urla di più. È il posto dove chi vive un luogo dice cosa ne pensa, con un
+          Pulse non è l'ennesimo social dove si urla di più. È il posto dove chi vive un luogo dice cosa ne pensa, con un
           voto, una foto, una domanda. E dove conta quante persone coinvolgi, non quanti like collezioni.
         </p>
       </Hero>
@@ -181,7 +181,7 @@ function Ecosistema({ go, meta }: { go: Go; meta: Meta }) {
             ["Il voto è segreto.", `Nessuno, nemmeno chi crea il sondaggio, vede cosa hai votato. Le percentuali compaiono solo da ${minRes} voti in su.`],
             ["Dati minimi.", "Nome utente e password. Niente email, numero di telefono o posizione GPS."],
             ["Nessun algoritmo nascosto.", "I contenuti arrivano in ordine di tempo. Sei tu a scegliere chi seguire e quali città guardare."],
-            ["Codice aperto.", "Come funziona PULSE, crittografia compresa, lo può verificare chiunque."],
+            ["Codice aperto.", "Come funziona Pulse, crittografia compresa, lo può verificare chiunque."],
           ].map(([t, d], i) => (
             <li key={t} className="flex gap-4">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pulse font-display text-sm font-extrabold text-ink">{i + 1}</span>
@@ -278,7 +278,7 @@ function Sicurezza({ go, meta }: { go: Go; meta: Meta }) {
 
       <Block title="In tutta onestà">
         <p className="rounded-[1.5rem] bg-maybe/[0.08] p-5 text-sm leading-6 text-zinc-300 ring-1 ring-maybe/20">
-          PULSE è un social: per mostrarti post e profili, il server deve poterli leggere. Non è quindi una cifratura "end-to-end" come in una chat
+          Pulse è un social: per mostrarti post e profili, il server deve poterli leggere. Non è quindi una cifratura "end-to-end" come in una chat
           privata. Lo stesso vale per i voti: chi ruba il database non può sapere come hai votato, ma chi gestisce il server e la sua chiave segreta
           potrebbe, con un lavoro mirato, ricostruirlo (succede in qualsiasi app con un voto a persona). Proprio per questo il codice è pubblico:
           chiunque può controllare cosa facciamo con i dati, senza doverci credere sulla parola.
@@ -311,7 +311,7 @@ function OpenSource({ go, meta }: { go: Go; meta: Meta }) {
     <>
       <Hero kicker="Open source" title={<>Non fidarti. <span className="text-pulse">Verifica.</span></>} icon={<CodeXml size={22} />}>
         <p>
-          Il codice di PULSE è pubblico. Come cifriamo il database, come teniamo segreto il voto, come contiamo le persone coinvolte:
+          Il codice di Pulse è pubblico. Come cifriamo il database, come teniamo segreto il voto, come contiamo le persone coinvolte:
           tutto è lì, riga per riga.
         </p>
       </Hero>
@@ -369,7 +369,7 @@ function OpenSource({ go, meta }: { go: Go; meta: Meta }) {
         pubblicare anche le proprie modifiche.
       </p>
 
-      <Next go={go} to="termini" title="Termini di utilizzo" text="Le regole che rendono PULSE un bel posto" />
+      <Next go={go} to="termini" title="Termini di utilizzo" text="Le regole che rendono Pulse un bel posto" />
     </>
   );
 }
@@ -397,7 +397,7 @@ function Termini({ meta }: { meta: Meta }) {
   const reports = meta.report_threshold ?? 3;
   return (
     <>
-      <Hero kicker="Termini di utilizzo" title={<>Le regole di <span className="text-pulse">PULSE.</span></>} icon={<ScrollText size={22} />}>
+      <Hero kicker="Termini di utilizzo" title={<>Le regole di <span className="text-pulse">Pulse.</span></>} icon={<ScrollText size={22} />}>
         <p>Poche regole, chiare. Servono a una cosa sola: far sì che qui si possa discutere di tutto, senza che nessuno venga calpestato.</p>
         <p className="mt-2 text-xs text-zinc-500">Versione {meta.terms_version ?? "—"}</p>
       </Hero>
@@ -415,9 +415,9 @@ function Termini({ meta }: { meta: Meta }) {
         </ul>
       </section>
 
-      <Term n={1} title="Cos'è PULSE">
+      <Term n={1} title="Cos'è Pulse">
         <p>
-          PULSE è un servizio gratuito per condividere post, foto e sondaggi su ciò che succede nelle città italiane. Usandolo accetti questi
+          Pulse è un servizio gratuito per condividere post, foto e sondaggi su ciò che succede nelle città italiane. Usandolo accetti questi
           Termini e l'<a href="/privacy" className="font-semibold text-pulse underline">informativa privacy</a>.
           {controller ? <> Il servizio è gestito da <strong>{controller}</strong>.</> : null}
         </p>
@@ -446,7 +446,7 @@ function Termini({ meta }: { meta: Meta }) {
 
       <Term n={5} title="I tuoi contenuti">
         <p>
-          Ciò che pubblichi resta tuo. Ci dai il permesso di mostrarlo dentro PULSE, alle persone che possono vederlo secondo le tue impostazioni,
+          Ciò che pubblichi resta tuo. Ci dai il permesso di mostrarlo dentro Pulse, alle persone che possono vederlo secondo le tue impostazioni,
           finché non lo elimini. Sei responsabile di ciò che pubblichi: assicurati di averne il diritto.
         </p>
       </Term>
@@ -461,7 +461,7 @@ function Termini({ meta }: { meta: Meta }) {
 
       <Term n={7} title="Sondaggi e risultati">
         <p>
-          I risultati mostrano come hanno votato gli utenti di PULSE: non sono un sondaggio statistico rappresentativo della popolazione e non
+          I risultati mostrano come hanno votato gli utenti di Pulse: non sono un sondaggio statistico rappresentativo della popolazione e non
           vanno presentati come tale. Il voto è segreto e non viene mostrato a nessuno.
         </p>
       </Term>
@@ -472,7 +472,7 @@ function Termini({ meta }: { meta: Meta }) {
 
       <Term n={9} title="Il servizio">
         <p>
-          Facciamo del nostro meglio perché PULSE funzioni sempre e in sicurezza, ma il servizio è offerto così com'è: possono capitare
+          Facciamo del nostro meglio perché Pulse funzioni sempre e in sicurezza, ma il servizio è offerto così com'è: possono capitare
           interruzioni o errori. Nei limiti di legge non rispondiamo dei contenuti pubblicati dagli utenti.
         </p>
       </Term>
@@ -490,7 +490,7 @@ function Termini({ meta }: { meta: Meta }) {
 
       <div className="mt-10 flex items-center gap-3 rounded-[1.5rem] bg-white/[0.04] p-5 ring-1 ring-white/[0.06]">
         <Flag size={20} className="shrink-0 text-pulse" />
-        <p className="text-sm leading-6 text-zinc-300">Vedi qualcosa che non va? Segnalalo con "⋯ → Segnala": ci aiuti a tenere PULSE un bel posto.</p>
+        <p className="text-sm leading-6 text-zinc-300">Vedi qualcosa che non va? Segnalalo con "⋯ → Segnala": ci aiuti a tenere Pulse un bel posto.</p>
       </div>
       <p className="mt-4 flex items-center gap-1.5 text-xs text-zinc-600">
         <Scale size={13} /> Documento informativo. Verificalo con un consulente legale prima del lancio pubblico.
@@ -513,7 +513,7 @@ export default function InfoPage({ slug, meta, onBack, go }: { slug: InfoSlug; m
       {slug === "termini" && <Termini meta={meta} />}
       {slug === "privacy" && <PrivacyPage info={meta.privacy} />}
       <p className="mt-10 flex items-center justify-center gap-1.5 text-xs text-zinc-600">
-        <Sparkles size={12} /> PULSE · fatto in Italia, con codice aperto
+        <Sparkles size={12} /> Pulse · fatto in Italia, con codice aperto
       </p>
     </article>
   );

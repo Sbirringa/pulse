@@ -49,9 +49,9 @@ export function renderPulseCard(data: PulseData, nickname: string): Promise<Blob
   ctx.fillStyle = "#f4f4f2";
   ctx.font = font(64, 900);
   ctx.textBaseline = "alphabetic";
-  ctx.fillText("PULSE", 188, 140);
+  ctx.fillText("Pulse", 188, 140);
   ctx.fillStyle = LIME;
-  ctx.fillText(".", 188 + ctx.measureText("PULSE").width, 140);
+  ctx.fillText(".", 188 + ctx.measureText("Pulse").width, 140);
 
   // nickname
   ctx.fillStyle = "#a1a1a0";
@@ -67,8 +67,8 @@ export function renderPulseCard(data: PulseData, nickname: string): Promise<Blob
   ctx.fillStyle = "#f4f4f2";
   ctx.font = font(52, 800);
   const label = hasAlign
-    ? ["in sintonia con gli altri", "partecipanti di PULSE"]
-    : ["questioni a cui ho", "risposto su PULSE"];
+    ? ["in sintonia con gli altri", "partecipanti di Pulse"]
+    : ["questioni a cui ho", "risposto su Pulse"];
   ctx.fillText(label[0], 80, 730);
   ctx.fillText(label[1], 80, 795);
 

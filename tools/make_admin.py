@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Rende amministratore un utente di PULSE (in locale).
+"""Rende amministratore un utente di Pulse (in locale).
 
-Dalla cartella del progetto, con PULSE anche accesa:
+Dalla cartella del progetto, con Pulse anche accesa:
     backend\\.venv\\Scripts\\python tools\\make_admin.py tuo_nome_utente
     backend\\.venv\\Scripts\\python tools\\make_admin.py tuo_nome_utente --rimuovi
 """

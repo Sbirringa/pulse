@@ -1,4 +1,4 @@
-"""Configurazione di PULSE.
+"""Configurazione di Pulse.
 
 Tutto arriva da variabili d'ambiente, con default pensati per lo sviluppo locale:
 - senza DATABASE_URL usa SQLite (un file in backend/data/pulse.db)

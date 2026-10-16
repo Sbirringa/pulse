@@ -1,6 +1,6 @@
 # Sicurezza
 
-Se trovi una vulnerabilità in PULSE, **non aprire una issue pubblica**.
+Se trovi una vulnerabilità in Pulse, **non aprire una issue pubblica**.
 
 Scrivi a **people.pulse@gmail.com** con:
 

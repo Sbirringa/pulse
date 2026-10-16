@@ -136,7 +136,7 @@ function Header({
         <Count n={counts.followers} label="Follower" onClick={onPeople && (() => onPeople("followers"))} />
         <Count n={counts.following} label="Seguiti" onClick={onPeople && (() => onPeople("following"))} />
       </div>
-      {/* la misura che conta su PULSE: quante persone ha coinvolto, non quanti follower ha */}
+      {/* la misura che conta su Pulse: quante persone ha coinvolto, non quanti follower ha */}
       <Reach counts={counts} isMe={isMe} />
     </section>
   );

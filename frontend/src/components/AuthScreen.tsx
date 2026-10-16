@@ -266,7 +266,7 @@ export default function AuthScreen({
                 informativa privacy
               </a>{" "}
               e acconsento al trattamento dei miei dati, comprese le risposte ai sondaggi che possono rivelare le mie
-              opinioni politiche. So che ciò che pubblico su PULSE è visibile a tutti. Posso revocare il consenso
+              opinioni politiche. So che ciò che pubblico su Pulse è visibile a tutti. Posso revocare il consenso
               eliminando l'account.
             </span>
           </label>
@@ -282,7 +282,7 @@ export default function AuthScreen({
           disabled={busy || (mode === "register" && !consent) || mismatch}
           className="w-full rounded-xl bg-pulse py-3.5 text-base font-extrabold text-ink transition hover:brightness-110 active:scale-[0.99] disabled:opacity-60"
         >
-          {busy ? "Attendi…" : mode === "register" ? "Entra in PULSE" : mode === "login" ? "Accedi" : "Reimposta la password"}
+          {busy ? "Attendi…" : mode === "register" ? "Entra in Pulse" : mode === "login" ? "Accedi" : "Reimposta la password"}
         </button>
 
         <div className="flex items-center justify-between text-xs text-zinc-500">
@@ -300,7 +300,7 @@ export default function AuthScreen({
       </form>
 
       <p className="mt-6 text-center text-xs leading-5 text-zinc-600">
-        I risultati mostrano le risposte degli utenti di PULSE: non sono un sondaggio rappresentativo della
+        I risultati mostrano le risposte degli utenti di Pulse: non sono un sondaggio rappresentativo della
         popolazione. ·{" "}
         <a href="/termini" className="underline hover:text-zinc-400">
           Termini

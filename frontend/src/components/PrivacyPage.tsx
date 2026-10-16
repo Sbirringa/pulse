@@ -46,7 +46,7 @@ export default function PrivacyPage({ info }: { info: PrivacyInfo | null }) {
       </Section>
 
       <Section title="Quali dati raccogliamo">
-        <p>PULSE è progettata per raccogliere il minimo indispensabile. Non chiediamo nome, email, telefono, documenti né la posizione del dispositivo.</p>
+        <p>Pulse è progettata per raccogliere il minimo indispensabile. Non chiediamo nome, email, telefono, documenti né la posizione del dispositivo.</p>
         <ul className="list-disc space-y-1 pl-5">
           <li>Account: nickname scelto da te, password e codice di recupero (conservati solo in forma cifrata con hash irreversibile).</li>
           <li>Città, se decidi di indicarla: è una tua dichiarazione, non viene verificata.</li>
@@ -71,7 +71,7 @@ export default function PrivacyPage({ info }: { info: PrivacyInfo | null }) {
             cifrato e agli altri non mostriamo mai chi l'ha scritto né chi l'ha trovato utile, solo il numero.
           </li>
           <li>
-            I post, i commenti e le foto che pubblichi su PULSE, e le segnalazioni che invii. Dalle foto
+            I post, i commenti e le foto che pubblichi su Pulse, e le segnalazioni che invii. Dalle foto
             eliminiamo automaticamente la posizione GPS e tutti gli altri dati nascosti (modello del telefono, data
             di scatto…): conserviamo solo una copia ricodificata dell'immagine, mai il file originale.
           </li>
@@ -123,13 +123,13 @@ export default function PrivacyPage({ info }: { info: PrivacyInfo | null }) {
           {info?.min_city_results ?? 5} risposte, per non esporre gruppi molto piccoli.
         </p>
         <p>
-          <strong>Post e commenti:</strong> post, commenti e foto sono pubblici: li vede chiunque visiti PULSE, anche senza
+          <strong>Post e commenti:</strong> post, commenti e foto sono pubblici: li vede chiunque visiti Pulse, anche senza
           account, insieme al tuo nome utente e, per i post locali, alla città. Ricorda che quello che scrivi o mostri può rivelare informazioni su di te:
           non pubblicare dati personali tuoi o di altri, né foto di persone riconoscibili senza il loro consenso.
         </p>
         <p>
           <strong>Profilo:</strong> nome utente, nome e cognome, bio e foto profilo sono pubblici (li vede chiunque
-          visiti PULSE), insieme al <em>numero</em> di chi segui e di chi ti segue. Gli <em>elenchi</em> di follower e seguiti li vedi
+          visiti Pulse), insieme al <em>numero</em> di chi segui e di chi ti segue. Gli <em>elenchi</em> di follower e seguiti li vedi
           solo tu. Con il <strong>profilo privato</strong> i tuoi post e sondaggi li vede solo chi vi seguite a vicenda (e ogni
           richiesta di follow la approvi tu). Puoi anche scegliere se approvare ogni richiesta con il profilo pubblico e togliere
           chi vuoi dai tuoi follower.
@@ -230,7 +230,7 @@ export default function PrivacyPage({ info }: { info: PrivacyInfo | null }) {
       </Section>
 
       <Section title="Età minima">
-        <p>PULSE è riservata a chi ha almeno {info?.min_age ?? 14} anni.</p>
+        <p>Pulse è riservata a chi ha almeno {info?.min_age ?? 14} anni.</p>
       </Section>
     </div>
   );

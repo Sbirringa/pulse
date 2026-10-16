@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Avvia PULSE in locale con un solo comando (Windows, macOS, Linux).
+"""Avvia Pulse in locale con un solo comando (Windows, macOS, Linux).
 
     python run_local.py          # prepara tutto, compila il frontend e avvia su http://127.0.0.1:8000
     python run_local.py --dev    # come sopra, ma con hot reload (frontend su http://127.0.0.1:5173)
@@ -76,7 +76,7 @@ def main() -> None:
         stamp.touch()
 
     step("Dipendenze frontend")
-    # si reinstallano anche quando cambia l'elenco delle librerie (es. dopo un aggiornamento di PULSE)
+    # si reinstallano anche quando cambia l'elenco delle librerie (es. dopo un aggiornamento di Pulse)
     npm_stamp = FRONTEND / "node_modules" / ".pulse-stamp"
     lock = FRONTEND / "package-lock.json"
     if not npm_stamp.exists() or npm_stamp.stat().st_mtime < lock.stat().st_mtime:
@@ -117,7 +117,7 @@ def main() -> None:
         step("Compilo il frontend")
         run([npm, "run", "build"], FRONTEND)
 
-    step(f"PULSE è pronta → apri http://127.0.0.1:{args.port}  (Ctrl+C per fermare)")
+    step(f"Pulse è pronta → apri http://127.0.0.1:{args.port}  (Ctrl+C per fermare)")
     try:
         run(
             [str(VENV_PY), "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", str(args.port)],
