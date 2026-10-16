@@ -8,6 +8,7 @@ import Avatar from "./Avatar";
 import Comments from "./Comments";
 import { isLocal } from "./DeclareCity";
 import Composer from "./Composer";
+import Trending from "./Trending";
 import PostCard from "./PostCard";
 import PollCard from "../polls/PollCard";
 import { PollList } from "../polls/PollsTab";
@@ -169,11 +170,17 @@ export default function PiazzaTab({
   const [error, setError] = useState("");
   // domanda del giorno: un sondaggio a cui non hai ancora risposto, in cima al Pulse
   const [today, setToday] = useState<Poll | null>(null);
+  const [todayReady, setTodayReady] = useState(false);
   const showToday = !only && scope === "all" && kind === "all";
   useEffect(() => {
     if (!showToday || openPostId !== null) return;
     let alive = true;
-    api.pollToday().then((p) => alive && setToday(p)).catch(() => alive && setToday(null));
+    setTodayReady(false);
+    api
+      .pollToday()
+      .then((p) => alive && setToday(p))
+      .catch(() => alive && setToday(null))
+      .finally(() => alive && setTodayReady(true));
     return () => {
       alive = false;
     };
@@ -420,6 +427,9 @@ export default function PiazzaTab({
       {showToday && today && !loading && (
         <PollCard key={`today${today.id}`} poll={today} onDeleted={() => setToday(null)} />
       )}
+      {/* in evidenza: i più seguiti della settimana (non ripete la domanda del giorno) */}
+      {showToday && todayReady && !loading && <Trending excludeId={today?.id ?? null} />}
+      {scope === "city" && city && kind === "all" && !only && !loading && <Trending key={city} fixedCity={city} />}
       {!loading && posts.length === 0 && scope === "all" && examples}
       {!loading &&
         posts.filter((p) => !(showToday && today && p.type === "poll" && p.id === today.id)).map((p, i) => [

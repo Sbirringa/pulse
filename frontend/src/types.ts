@@ -150,6 +150,15 @@ export interface LocalSplit {
 
 export type FeedItem = (Post & { type: "post" }) | Poll;
 
+/** In evidenza: un contenuto con le persone coinvolte negli ultimi 7 giorni. */
+export type TrendingItem = FeedItem & { week_people: number };
+export interface Trending {
+  where: "italy" | "city";
+  city: string | null;
+  days: number;
+  items: TrendingItem[];
+}
+
 export interface NotificationItem {
   id: number;
   kind: "follow" | "follow_request" | "follow_accepted" | "comment" | "reply" | "poll_ended" | "proposal_poll";

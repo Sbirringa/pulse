@@ -58,6 +58,7 @@ from . import votes as V
 from .models import Follow, Image, Question, Report, User
 from .notifications import router as notifications_router
 from .debate import router as debate_router
+from .trending import router as trending_router
 from .polls import DURATIONS, _majority, _utc, secret_pct, compute_results, is_ended, question_out, questions_out, visible_to
 from .security import (
     DUMMY_HASH,
@@ -824,6 +825,7 @@ app.include_router(profiles_router)  # profili e follow
 app.include_router(places_router)  # comuni e mappa
 app.include_router(notifications_router)  # notifiche
 app.include_router(debate_router)  # ragioni pro/contro e domanda del giorno
+app.include_router(trending_router)  # in evidenza
 
 
 # --------------------------------------------------------------------------------------------

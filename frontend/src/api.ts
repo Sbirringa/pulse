@@ -1,5 +1,6 @@
 import type {
   Argument,
+  Trending,
   AdminItem,
   AuthResult,
   PersonCard,
@@ -79,6 +80,12 @@ export const api = {
     if (opts.following) q.set("following", "true");
     if (opts.before) q.set("before", String(opts.before));
     return call<{ items: Poll[]; next: number | null }>("GET", `/polls?${q}`);
+  },
+  trending: (where: "italy" | "city", city?: string | null, exclude?: number | null) => {
+    const q = new URLSearchParams({ where });
+    if (city) q.set("city", city);
+    if (exclude) q.set("exclude", String(exclude));
+    return call<Trending>("GET", `/trending?${q}`);
   },
   pollToday: () => call<Poll | null>("GET", "/polls/today"),
   arguments: (qid: number) => call<{ yes: Argument[]; no: Argument[] }>("GET", `/questions/${qid}/arguments`),

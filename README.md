@@ -21,6 +21,8 @@ algoritmi di engagement, voti segreti e dati personali cifrati.
 - **Le ragioni** — sotto ogni sondaggio, «Perché sì» e «Perché no» affiancati. Le ragioni più utili salgono in cima,
   senza nome: si discute sugli argomenti, non sulle persone.
 - **Domanda del giorno** — in cima al feed, un sondaggio a cui non hai ancora risposto, prima della tua città.
+- **In evidenza** — i tre contenuti che hanno coinvolto più persone negli ultimi 7 giorni, nella tua città o in
+  tutta Italia. Si contano persone diverse, non like.
 - **Città** — tutti i 7.896 comuni italiani. Nei sondaggi di una città si vedono separati i voti di chi è *di qui* e
   di chi vota *da fuori*; chi crea un contenuto può riservarlo alle persone di quella città.
 - **Mappa** — dove si parla adesso, una bolla per comune.
