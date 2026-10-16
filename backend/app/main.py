@@ -836,9 +836,16 @@ if (STATIC_DIR / "assets").exists():
     app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
 
 
-def _index_html() -> str | None:
+def _index_html(request: Request | None = None) -> str | None:
     path = STATIC_DIR / "index.html"
-    return path.read_text(encoding="utf-8") if path.exists() else None
+    if not path.exists():
+        return None
+    page = path.read_text(encoding="utf-8")
+    if request is not None:
+        # le anteprime dei link (WhatsApp, Telegram…) vogliono l'indirizzo completo dell'immagine
+        base = str(request.base_url).rstrip("/")
+        page = page.replace('content="/og.png"', f'content="{base}/og.png"')
+    return page
 
 
 NO_FRONTEND = HTMLResponse(
@@ -849,8 +856,8 @@ NO_FRONTEND = HTMLResponse(
 
 
 @app.get("/q/{qid}", include_in_schema=False)
-def shared_question(qid: int, db: Session = Depends(get_db)):
-    page = _index_html()
+def shared_question(qid: int, request: Request, db: Session = Depends(get_db)):
+    page = _index_html(request)
     if page is None:
         return NO_FRONTEND
     q = db.get(Question, qid)
@@ -861,12 +868,11 @@ def shared_question(qid: int, db: Session = Depends(get_db)):
         page = re.sub(r'<meta property="og:title"[^>]*>', f'<meta property="og:title" content="{title}">', page, count=1)
         page = re.sub(r'<meta property="og:description"[^>]*>', f'<meta property="og:description" content="{desc}">', page, count=1)
         page = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", page, count=1, flags=re.S)
-        page = page.replace("</head>", '<meta name="twitter:card" content="summary"></head>', 1)
     return HTMLResponse(page)
 
 
 @app.get("/{full_path:path}", include_in_schema=False)
-def spa(full_path: str):
+def spa(full_path: str, request: Request):
     if full_path.startswith("api/"):
         raise HTTPException(404, "Not found")
     if not STATIC_DIR.exists():
@@ -874,5 +880,5 @@ def spa(full_path: str):
     candidate = (STATIC_DIR / full_path).resolve()
     if full_path and candidate.is_file() and STATIC_DIR.resolve() in candidate.parents:
         return FileResponse(candidate)
-    page = _index_html()
+    page = _index_html(request)
     return HTMLResponse(page) if page else NO_FRONTEND
