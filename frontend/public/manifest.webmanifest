@@ -1,0 +1,10 @@
+{
+  "name": "PULSE",
+  "short_name": "PULSE",
+  "description": "Il battito della tua città: racconta cosa succede dove vivi, confrontati, proponi.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1322",
+  "theme_color": "#0e1322",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

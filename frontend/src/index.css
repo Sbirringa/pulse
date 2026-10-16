@@ -1,0 +1,238 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/instrument-sans";
+
+/*
+ * PULSE — la città di sera.
+ * Fondo blu notte (non nero), lime come marchio e come "favorevole",
+ * glicine per "dipende", corallo per "contrario": i tre colori del polso.
+ */
+@theme {
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-pulse: #c8ff3d;
+  --color-ink: #0e1322;
+  /* tre livelli di superficie, sempre nello stesso ordine: fondo → card → controlli */
+  --color-panel: #141a2b;
+  --color-raised: #1b2236;
+  --color-line: #242c44;
+
+  --color-yes: #c8ff3d;
+  --color-maybe: #9aa8ff;
+  --color-no: #ff6e7f;
+
+  /* grigi leggermente blu: si intonano al fondo invece di sembrare "spenti" */
+  --color-zinc-50: #f6f7fb;
+  --color-zinc-100: #eef1f8;
+  --color-zinc-200: #dce1ee;
+  --color-zinc-300: #bcc4d8;
+  --color-zinc-400: #949db6;
+  --color-zinc-500: #727b95;
+  --color-zinc-600: #565e77;
+  --color-zinc-700: #3a4260;
+  --color-zinc-800: #232b45;
+  --color-zinc-900: #161c30;
+  --color-zinc-950: #0b0f1c;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-zinc-100);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* i titoli usano la grottesca: un po' stretta e decisa */
+@layer base {
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+  }
+}
+.font-display {
+  font-optical-sizing: auto;
+}
+
+/* nel livello "base": così le classi dei singoli campi (dimensione, carattere) vincono su questa regola */
+@layer base {
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* contorno di focus per la tastiera; i campi di testo hanno già il loro bordo evidenziato */
+:focus-visible:not(input):not(textarea):not(select) {
+  outline: 2px solid var(--color-pulse);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* la card di PULSE: post, sondaggi, riquadri. Un solo raggio e un bordo sottile, niente ombre. */
+@layer components {
+  .card {
+    border-radius: 1.375rem;
+    background: var(--color-panel);
+    border: 1px solid var(--color-line);
+  }
+  /* domanda del giorno: stessa card, con un filo di luce in alto */
+  .today-card {
+    border-color: color-mix(in srgb, var(--color-pulse) 32%, var(--color-line));
+    background:
+      radial-gradient(120% 60% at 0% 0%, color-mix(in srgb, var(--color-pulse) 9%, transparent), transparent 60%),
+      var(--color-panel);
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* scorrimento orizzontale senza barra (filtri) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.3s ease-out backwards;
+}
+
+/* il polso che si riempie dopo il voto: l'unico movimento "di scena" dell'app */
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.fill {
+  transform-origin: left;
+  animation: fill 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+}
+
+.grow {
+  animation: grow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pop {
+  animation: pop 0.25s ease-out;
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sheet-in {
+  animation: sheet-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+/* strisce del polso "ancora da scoprire" (prima di votare) */
+.stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgb(255 255 255 / 0.07) 0 6px,
+    rgb(255 255 255 / 0.02) 6px 12px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .grow,
+  .fill,
+  .pop,
+  .sheet-in {
+    animation: none;
+  }
+}
+
+/* post successivo / precedente dopo uno swipe */
+@keyframes from-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+@keyframes from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+.from-right {
+  animation: from-right 0.25s ease-out;
+}
+.from-left {
+  animation: from-left 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .from-right,
+  .from-left {
+    animation: none;
+  }
+}

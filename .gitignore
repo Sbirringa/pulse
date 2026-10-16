@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/data/
+node_modules/
+frontend/dist/
+.env
+*.log
+pulse.env
+
+# segreti e file di lavoro: mai su GitHub
+*.db
+*.sqlite
+*.sqlite3
+.datakey
+.secret
+PULSE-CHIAVI*
+*.zip
+*.bak
+aggiorna_*.py
