@@ -106,8 +106,8 @@ function GuestHero() {
         <span className="text-zinc-400">Ascolta gli altri.</span>
       </h1>
       <p className="mt-4 max-w-sm text-[15px] leading-6 text-zinc-300">
-        Racconta cosa succede dove vivi, rispondi ai sondaggi con un tocco e guarda come la pensano
-        le persone, città per città.
+        Lavoro, prezzi, sanità, la tua città: scrivi cosa ne pensi, rispondi ai sondaggi con un tocco e guarda come la pensano
+        gli altri, in tutta Italia e città per città.
       </p>
       <div className="mt-5 flex items-center gap-3 text-xs font-semibold text-zinc-400" aria-hidden>
         {STANCES.map((s) => (
@@ -331,7 +331,7 @@ export default function PiazzaTab({
             <div className="card p-3">
               <button onClick={() => setWriting(true)} className="flex w-full items-center gap-3 rounded-2xl px-1 py-1 text-left">
                 <Avatar name={me.name ?? me.nickname} src={me.avatar} size={38} />
-                <span className="flex-1 text-[15px] text-zinc-500">Cosa succede nella tua città?</span>
+                <span className="flex-1 text-[15px] text-zinc-500">Di cosa vuoi discutere?</span>
               </button>
               <div className="mt-2.5 flex gap-2 border-t border-line pt-2.5">
                 <button onClick={() => setWriting(true)} className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2 text-[13.5px] font-semibold text-zinc-300 transition hover:bg-white/[0.05] hover:text-white">
@@ -414,7 +414,7 @@ export default function PiazzaTab({
         <div className="card px-6 py-8 text-center">
           <p className="font-display text-lg font-bold text-zinc-50">{scope === "city" ? `A ${city} è ancora tutto tranquillo` : "Qui è ancora tutto tranquillo"}</p>
           <p className="mx-auto mt-1.5 max-w-xs text-sm leading-6 text-zinc-400">
-            {me ? "Sii il primo: racconta cosa succede dove vivi." : "Entra e scrivi tu il primo post."}
+            {me ? "Sii il primo: apri una discussione o un sondaggio." : "Entra e scrivi tu il primo post."}
           </p>
           {!me && (
             <button onClick={() => requireAuth()} className="mt-5 rounded-full bg-pulse px-5 py-2.5 text-sm font-bold text-ink hover:brightness-110">

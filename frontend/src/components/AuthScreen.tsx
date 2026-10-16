@@ -103,7 +103,7 @@ export default function AuthScreen({
           sentire.
         </h1>
         <p className="mt-4 text-base leading-7 text-zinc-400">
-          Racconta cosa succede dove vivi, confrontati con gli altri, trova chi vuole cambiare le cose con te.
+          Lavoro, prezzi, servizi, la tua città: confrontati con gli altri e trova chi vuole cambiare le cose con te.
           Bastano un nome utente e una password.
         </p>
       </section>

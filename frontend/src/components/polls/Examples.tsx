@@ -5,6 +5,60 @@ import Polso, { STANCES } from "./Polso";
 
 /* Illustrazioni originali, solo forme semplici nei colori dell'app (nessuna immagine esterna). */
 const Art = {
+  // settimana corta: un calendario con il venerdì libero
+  calendario: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
+      <rect width="320" height="200" fill="#1b2236" />
+      <rect x="60" y="34" width="200" height="140" rx="14" fill="#2c3554" />
+      <rect x="60" y="34" width="200" height="34" rx="14" fill="#9aa8ff" />
+      <rect x="60" y="54" width="200" height="14" fill="#9aa8ff" />
+      {[96, 224].map((x) => (
+        <rect key={x} x={x - 4} y="24" width="8" height="22" rx="4" fill="#f6f7fb" />
+      ))}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <rect key={i} x={76 + i * 36} y="84" width="28" height="28" rx="6" fill={i === 4 ? "#c8ff3d" : "#3a4260"} />
+      ))}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <rect key={i} x={76 + i * 36} y="124" width="28" height="28" rx="6" fill={i === 4 ? "#c8ff3d" : "#3a4260"} />
+      ))}
+      <path d="M226 98 l6 6 l10 -12 M226 138 l6 6 l10 -12" stroke="#0e1322" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  // contenuti creati con l'intelligenza artificiale: un telefono con l'etichetta "IA"
+  telefono: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
+      <rect width="320" height="200" fill="#211c38" />
+      <circle cx="70" cy="60" r="34" fill="#9aa8ff" opacity=".18" />
+      <circle cx="260" cy="150" r="44" fill="#c8ff3d" opacity=".1" />
+      <rect x="118" y="22" width="84" height="164" rx="16" fill="#0e1322" />
+      <rect x="125" y="34" width="70" height="132" rx="8" fill="#2c3554" />
+      <rect x="132" y="44" width="56" height="44" rx="6" fill="#ff9aa6" />
+      <circle cx="150" cy="60" r="7" fill="#ffd27a" />
+      <path d="M134 86 l18 -16 l14 10 l20 -14 v22 Z" fill="#7fe0d0" />
+      <rect x="132" y="96" width="56" height="6" rx="3" fill="#3a4260" />
+      <rect x="132" y="108" width="40" height="6" rx="3" fill="#3a4260" />
+      <rect x="168" y="38" width="30" height="18" rx="9" fill="#c8ff3d" />
+      <text x="183" y="51" textAnchor="middle" fontSize="11" fontWeight="800" fill="#0e1322" fontFamily="sans-serif">IA</text>
+    </svg>
+  ),
+  // sanità: liste d'attesa (una croce e un orologio)
+  sanita: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
+      <rect width="320" height="200" fill="#16263a" />
+      <rect y="160" width="320" height="40" fill="#1d3a5a" />
+      <rect x="54" y="60" width="130" height="100" rx="6" fill="#2c3554" />
+      <rect x="98" y="30" width="42" height="42" rx="8" fill="#f6f7fb" />
+      <rect x="114" y="38" width="10" height="26" rx="2" fill="#ff6e7f" />
+      <rect x="106" y="46" width="26" height="10" rx="2" fill="#ff6e7f" />
+      {[0, 1, 2].map((i) => (
+        <rect key={i} x={70 + i * 36} y="90" width="24" height="20" rx="3" fill="#7fe0d0" opacity=".7" />
+      ))}
+      <rect x="104" y="124" width="30" height="36" rx="3" fill="#3a4260" />
+      <circle cx="238" cy="96" r="44" fill="#ffd27a" />
+      <circle cx="238" cy="96" r="36" fill="#16263a" />
+      <path d="M238 72 V96 L256 106" stroke="#ffd27a" strokeWidth="6" fill="none" strokeLinecap="round" />
+    </svg>
+  ),
   parco: (
     <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
       <rect width="320" height="200" fill="#1a2a2a" />
@@ -21,53 +75,6 @@ const Art = {
       <rect x="276" y="144" width="4" height="12" fill="#c8ff3d" />
     </svg>
   ),
-  bus: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
-      <rect width="320" height="200" fill="#161d38" />
-      {[30, 90, 150, 210, 270].map((x, i) => (
-        <rect key={x} x={x} y={40 + (i % 2) * 18} width="34" height={110 - (i % 2) * 18} fill="#232c4d" />
-      ))}
-      {[38, 98, 158, 218, 278].map((x) => (
-        <rect key={x} x={x} y="70" width="8" height="8" fill="#ffd27a" opacity=".8" />
-      ))}
-      <rect y="150" width="320" height="50" fill="#1f2740" />
-      <rect x="70" y="110" width="180" height="58" rx="14" fill="#9aa8ff" />
-      {[86, 126, 166, 206].map((x) => (
-        <rect key={x} x={x} y="120" width="30" height="20" rx="4" fill="#0e1322" />
-      ))}
-      <circle cx="105" cy="170" r="11" fill="#0b0f1c" />
-      <circle cx="215" cy="170" r="11" fill="#0b0f1c" />
-      <circle cx="244" cy="152" r="5" fill="#ffd27a" />
-    </svg>
-  ),
-  libri: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
-      <rect width="320" height="200" fill="#2a1f33" />
-      <rect y="160" width="320" height="40" fill="#3a2b45" />
-      {[
-        [70, 70, "#ff6e7f"],
-        [100, 55, "#c8ff3d"],
-        [128, 80, "#9aa8ff"],
-        [160, 62, "#ffd27a"],
-        [190, 74, "#7fe0d0"],
-        [220, 50, "#ff9aa6"],
-      ].map(([x, y, c]) => (
-        <rect key={String(x)} x={Number(x)} y={Number(y)} width="26" height={160 - Number(y)} rx="3" fill={String(c)} />
-      ))}
-      <circle cx="270" cy="40" r="14" fill="#ffd27a" opacity=".7" />
-    </svg>
-  ),
-  mare: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" aria-hidden>
-      <rect width="320" height="200" fill="#16263a" />
-      <circle cx="160" cy="110" r="44" fill="#ff9a6e" />
-      <rect y="110" width="320" height="90" fill="#1d3a5a" />
-      {[125, 145, 165].map((y, i) => (
-        <path key={y} d={`M0 ${y} q40 -10 80 0 t80 0 t80 0 t80 0`} stroke="#9aa8ff" strokeWidth="3" fill="none" opacity={0.8 - i * 0.2} />
-      ))}
-      <rect y="178" width="320" height="22" fill="#d9c08a" />
-    </svg>
-  ),
 };
 
 export interface Example {
@@ -82,10 +89,10 @@ export interface Example {
 }
 
 export const EXAMPLES: Example[] = [
-  { title: "Più panchine all'ombra nel parco del quartiere?", description: "D'estate le panchine al sole restano vuote.", category: "Città", place: "La tua città", left: "Ancora 3 giorni", art: Art.parco, pct: { yes: 72, depends: 18, no: 10 }, total: 214 },
-  { title: "Bus notturni anche nel weekend?", description: "Più sicurezza e meno auto, ma servono fondi.", category: "Trasporti", place: "Tutta Italia", left: "Ancora 1 settimana", art: Art.bus, pct: { yes: 58, depends: 25, no: 17 }, total: 1380 },
-  { title: "Biblioteche aperte anche la domenica?", description: "Per chi studia o lavora tutta la settimana.", category: "Scuola", place: "Tutta Italia", left: "Ancora 5 ore", art: Art.libri, pct: { yes: 64, depends: 21, no: 15 }, total: 892 },
-  { title: "Lungomare pedonale tutto l'anno?", description: "Oggi lo è solo d'estate.", category: "Ambiente", place: "La tua città", left: "Concluso", art: Art.mare, pct: { yes: 41, depends: 14, no: 45 }, total: 530 },
+  { title: "Settimana lavorativa di 4 giorni, a parità di stipendio?", description: "Più tempo e benessere, o costi che le aziende non reggono?", category: "Lavoro", place: "Tutta Italia", left: "Ancora 3 giorni", art: Art.calendario, pct: { yes: 61, depends: 24, no: 15 }, total: 2140 },
+  { title: "Etichetta obbligatoria su foto e video creati con l'IA?", description: "Per non confondere notizie vere e contenuti generati.", category: "Tecnologia", place: "Tutta Italia", left: "Ancora 1 settimana", art: Art.telefono, pct: { yes: 78, depends: 12, no: 10 }, total: 1520 },
+  { title: "Visite specialistiche entro 30 giorni o rimborso del privato?", description: "Mesi di attesa per un esame: chi paga se il pubblico non ce la fa?", category: "Sanità", place: "Tutta Italia", left: "Ancora 5 ore", art: Art.sanita, pct: { yes: 66, depends: 19, no: 15 }, total: 3080 },
+  { title: "Più verde e meno parcheggi nel centro della tua città?", description: "Alberi e piazze vivibili, o più difficile arrivare in centro?", category: "Città", place: "La tua città", left: "Concluso", art: Art.parco, pct: { yes: 44, depends: 22, no: 34 }, total: 486 },
 ];
 
 /** Come appare un sondaggio: usata per gli esempi e per l'anteprima mentre lo crei. */
@@ -160,6 +167,56 @@ export function PollFace({
 /* ---------- Esempi di post: stessi colori e stesse forme semplici ---------- */
 
 const PostArt = {
+  // stipendi: una busta paga e poche monete
+  stipendio: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="320" height="200" fill="#1b2236" />
+      <rect x="54" y="38" width="130" height="132" rx="10" fill="#f6f7fb" />
+      <rect x="70" y="56" width="70" height="10" rx="5" fill="#3a4260" />
+      {[80, 98, 116].map((y, i) => (
+        <g key={y}>
+          <rect x="70" y={y} width={60 - i * 10} height="7" rx="3.5" fill="#949db6" />
+          <rect x="146" y={y} width="24" height="7" rx="3.5" fill="#949db6" />
+        </g>
+      ))}
+      <rect x="70" y="140" width="100" height="16" rx="5" fill="#ff6e7f" />
+      {[0, 1, 2].map((i) => (
+        <g key={i}>
+          <ellipse cx="240" cy={152 - i * 14} rx="38" ry="11" fill="#c9a640" />
+          <ellipse cx="240" cy={148 - i * 14} rx="38" ry="11" fill="#ffd27a" />
+        </g>
+      ))}
+      <path d="M268 44 v52 m-14 -14 l14 14 l14 -14" stroke="#ff6e7f" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  // benzina: la pompa e il prezzo che sale
+  benzina: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="320" height="200" fill="#2a1f33" />
+      <rect y="166" width="320" height="34" fill="#3a2b45" />
+      <rect x="70" y="40" width="84" height="128" rx="10" fill="#ff6e7f" />
+      <rect x="82" y="54" width="60" height="38" rx="6" fill="#0e1322" />
+      <text x="112" y="80" textAnchor="middle" fontSize="18" fontWeight="800" fill="#ffd27a" fontFamily="sans-serif">2,0</text>
+      <rect x="82" y="104" width="60" height="10" rx="5" fill="#f6f7fb" opacity=".8" />
+      <path d="M154 70 h22 a10 10 0 0 1 10 10 v54 a10 10 0 0 0 20 0 v-42 l-14 -14" stroke="#f6f7fb" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M222 126 l22 -26 l18 14 l26 -40" stroke="#c8ff3d" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M272 70 h18 v18" stroke="#c8ff3d" strokeWidth="7" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  // scuola: un banco con un cuore (supporto psicologico)
+  scuola: (
+    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="320" height="200" fill="#16263a" />
+      <rect x="40" y="26" width="240" height="96" rx="8" fill="#1f4a3a" />
+      <rect x="40" y="26" width="240" height="96" rx="8" fill="none" stroke="#c9a640" strokeWidth="6" />
+      <path d="M160 96 C120 70 128 42 148 46 C156 48 160 56 160 56 C160 56 164 48 172 46 C192 42 200 70 160 96 Z" fill="#ff6e7f" />
+      <rect x="70" y="140" width="180" height="12" rx="4" fill="#c9a640" />
+      <rect x="86" y="152" width="8" height="36" fill="#3a4260" />
+      <rect x="226" y="152" width="8" height="36" fill="#3a4260" />
+      <rect x="120" y="126" width="34" height="14" rx="3" fill="#9aa8ff" />
+      <rect x="160" y="130" width="40" height="10" rx="3" fill="#ffd27a" />
+    </svg>
+  ),
   mercato: (
     <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
       <rect width="320" height="200" fill="#1b2236" />
@@ -179,53 +236,6 @@ const PostArt = {
       ))}
     </svg>
   ),
-  bici: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="320" height="200" fill="#1b2236" />
-      <rect y="120" width="320" height="80" fill="#2a3150" />
-      <rect y="148" width="320" height="26" fill="#3f8f5a" />
-      {[10, 70, 130, 190, 250, 310].map((x) => (
-        <rect key={x} x={x} y="159" width="30" height="4" rx="2" fill="#f6f7fb" opacity="0.8" />
-      ))}
-      <g stroke="#c8ff3d" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="120" cy="112" r="24" />
-        <circle cx="200" cy="112" r="24" />
-        <path d="M120 112 L148 76 L184 76 L200 112 M148 76 L160 112 L184 76 M140 66 h18 M184 76 l-6 -14 h14" />
-      </g>
-      {[40, 270].map((x) => (
-        <g key={x}>
-          <rect x={x - 3} y="62" width="6" height="58" fill="#3a4260" />
-          <circle cx={x} cy="56" r="22" fill="#5fcf8a" />
-        </g>
-      ))}
-    </svg>
-  ),
-  tramonto: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="320" height="200" fill="#2a2347" />
-      <rect y="70" width="320" height="60" fill="#5a3a63" />
-      <circle cx="210" cy="118" r="34" fill="#ffb27a" />
-      <rect y="118" width="320" height="82" fill="#1b2236" />
-      {[132, 146, 160].map((y, i) => (
-        <rect key={y} x={150 + i * 12} y={y} width={120 - i * 24} height="4" rx="2" fill="#ffb27a" opacity={0.6 - i * 0.15} />
-      ))}
-      <path d="M0 118 V84 h22 v-18 h18 v30 h20 v-40 h26 v52 h16 v-24 h20 v34 Z" fill="#11162a" />
-    </svg>
-  ),
-  murale: (
-    <svg viewBox="0 0 320 200" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="320" height="200" fill="#1b2236" />
-      <rect x="20" y="28" width="280" height="132" rx="6" fill="#2c3554" />
-      <circle cx="92" cy="94" r="44" fill="#ff6e7f" />
-      <rect x="128" y="50" width="70" height="88" rx="35" fill="#c8ff3d" />
-      <path d="M206 140 L246 56 L286 140 Z" fill="#9aa8ff" />
-      <circle cx="232" cy="66" r="12" fill="#ffd27a" />
-      <rect x="48" y="122" width="62" height="10" rx="5" fill="#7fe0d0" />
-      <rect y="160" width="320" height="40" fill="#232b45" />
-      <rect x="40" y="166" width="10" height="26" rx="3" fill="#3a4260" />
-      <rect x="270" y="166" width="10" height="26" rx="3" fill="#3a4260" />
-    </svg>
-  ),
 };
 
 export interface PostExample {
@@ -241,10 +251,10 @@ export interface PostExample {
 }
 
 export const POST_EXAMPLES: PostExample[] = [
+  { place: "Tutta Italia", body: "Laurea, cinque anni di esperienza e 1.400 € al mese. L'affitto se ne porta via più della metà. Succede solo a me o è normale?", art: PostArt.stipendio, comments: 127, supports: 312 },
+  { place: "Tutta Italia", body: "Benzina di nuovo sopra i 2 € al litro. Per chi va al lavoro in macchina sono quasi 150 € al mese. Voi come vi organizzate?", art: PostArt.benzina, comments: 64, supports: 189 },
+  { place: "Tutta Italia", headline: "Uno psicologo gratuito in ogni scuola superiore", body: "Ansia, pressione, solitudine: tanti ragazzi non sanno a chi chiedere aiuto.", art: PostArt.scuola, comments: 41, supports: 14, goal: 20 },
   { place: "La tua città", body: "Domenica mercatino dell'usato in piazza, dalle 10. Chi porta cosa? Servono tavoli e qualcuno per la musica.", art: PostArt.mercato, comments: 14, supports: 26 },
-  { place: "La tua città", body: "Hanno aperto la nuova pista ciclabile lungo il fiume. L'avete già provata? Com'è?", art: PostArt.bici, comments: 23, supports: 41 },
-  { place: "La tua città", headline: "Lampioni nuovi al belvedere", body: "La sera è completamente al buio e non ci va più nessuno.", art: PostArt.tramonto, comments: 8, supports: 14, goal: 20 },
-  { place: "La tua città", body: "Hanno finito il murale sul muro della scuola di quartiere. A voi piace?", art: PostArt.murale, comments: 31, supports: 58 },
 ];
 
 /** Come appare un post (per gli esempi): stessa card dei post veri. */

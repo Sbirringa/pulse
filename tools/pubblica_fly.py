@@ -4,7 +4,7 @@ Lancialo dalla cartella pulse:   python tools\\pubblica_fly.py
 
 Cosa fa:
   1. crea le chiavi segrete UNA volta sola e le salva FUORI dalla cartella pulse
-     (C:\\Users\\<te>\\Pulse-CHIAVI-PRIVATE.txt): se rilanci lo script le riusa, non le cambia mai;
+     (C:\\Users\\<te>\\PULSE-CHIAVI-PRIVATE.txt): se rilanci lo script le riusa, non le cambia mai;
   2. crea l'app su Fly con il nome che scegli (il link sarà https://NOME.fly.dev);
   3. passa a Fly i segreti (database Neon, chiavi, titolare, email) senza scriverli nella cronologia;
   4. crea l'archivio per le foto (Tigris);
@@ -23,7 +23,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-KEYS = Path.home() / "Pulse-CHIAVI-PRIVATE.txt"
+KEYS = Path.home() / "PULSE-CHIAVI-PRIVATE.txt"
 FLY_TOML = ROOT / "fly.toml"
 
 

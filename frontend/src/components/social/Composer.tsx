@@ -176,7 +176,7 @@ export default function Composer({
                 maxLength={MAX_CHARS}
                 rows={5}
                 aria-label="Testo del post"
-                placeholder="Cosa succede nella tua città?"
+                placeholder="Di cosa vuoi discutere?"
                 className="w-full resize-none bg-transparent pt-2 text-[17px] leading-7 outline-none placeholder:text-zinc-600"
               />
               {text.length > MAX_CHARS - 200 && <p className="tabular text-right text-xs text-zinc-500">{text.length}/{MAX_CHARS}</p>}
