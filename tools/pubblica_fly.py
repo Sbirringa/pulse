@@ -51,7 +51,7 @@ def fly(*args: str, capture: bool = False, stdin: str | None = None, check: bool
     if check and r.returncode != 0:
         out = (r.stdout or "") + (r.stderr or "")
         sys.exit(f"\nIl comando `fly {' '.join(a for a in args)}` non è andato a buon fine.\n{out.strip()}\n"
-                 "Copia questo messaggio e mandalo a Claude.")
+                 "Leggi il messaggio qui sopra per capire cosa non ha funzionato.")
     return r
 
 
@@ -145,7 +145,7 @@ def main() -> None:
                 keys.pop("FLY_APP")
                 KEYS.write_text("# PULSE - CHIAVI PRIVATE.\n" + "".join(f"{k}={v}\n" for k, v in keys.items()), encoding="utf-8")
                 sys.exit(f"Il nome «{name}» è già preso su Fly. Rilancia lo script e scegline un altro.")
-            sys.exit(f"Non riesco a creare l'app:\n{msg.strip()}\nMandalo a Claude.")
+            sys.exit(f"Non riesco a creare l'app:\n{msg.strip()}")
         print(f"Creata l'app {name}.")
     toml = FLY_TOML.read_text(encoding="utf-8")
     FLY_TOML.write_text(re.sub(r'(?m)^app = ".*"', f'app = "{name}"', toml, count=1), encoding="utf-8")

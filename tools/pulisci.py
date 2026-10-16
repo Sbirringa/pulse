@@ -3,7 +3,7 @@
 
 Dalla cartella del progetto:
     backend\\.venv\\Scripts\\python tools\\pulisci.py            elenco utenti con quanto hanno pubblicato
-    backend\\.venv\\Scripts\\python tools\\pulisci.py gigi       riepilogo di @gigi e menu:
+    backend\\.venv\\Scripts\\python tools\\pulisci.py mario     riepilogo di @mario e menu:
         1) cancella post, commenti, sondaggi e voti (l'account resta)
         2) cancella solo i voti
         3) elimina l'account intero

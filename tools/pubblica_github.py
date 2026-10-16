@@ -46,7 +46,7 @@ def git(*args: str, check: bool = True, capture: bool = True) -> str:
     r = subprocess.run(["git", *args], cwd=ROOT, text=True, capture_output=capture, encoding="utf-8", errors="replace")
     if check and r.returncode != 0:
         sys.exit(f"\nIl comando `git {' '.join(args)}` non è andato a buon fine:\n{(r.stdout or '') + (r.stderr or '')}\n"
-                 "Copia questo messaggio e mandalo a Claude.")
+                 "Leggi il messaggio qui sopra per capire cosa non ha funzionato.")
     return (r.stdout or "").strip()
 
 
@@ -122,7 +122,7 @@ def main() -> None:
         print("\n⛔ Mi fermo, non pubblico niente. Ho trovato:")
         for x in problems:
             print("   - " + x)
-        sys.exit("\nTogli quei file o quei testi (o mandami questo elenco) e rilancia lo script.")
+        sys.exit("\nTogli quei file o quei testi e rilancia lo script.")
     print(f"Controllati {len(tracked)} file: nessuna chiave, password o database. ✅")
 
     if files:
@@ -174,7 +174,7 @@ Crea il repository su GitHub (una volta sola):
     if app and Path(fly).exists() and yes(f"Collego il link anche all'app online ({app}) e la aggiorno?"):
         subprocess.run([fly, "secrets", "set", "--stage", f"PULSE_SOURCE_URL={web}", "-a", app], cwd=ROOT, check=False)
         r = subprocess.run([fly, "deploy", "-a", app, "--ha=false"], cwd=ROOT)
-        print("\n✅ App online aggiornata." if r.returncode == 0 else "\nL'aggiornamento online non è riuscito: mandami il messaggio.")
+        print("\n✅ App online aggiornata." if r.returncode == 0 else "\nL'aggiornamento online non è riuscito: leggi il messaggio qui sopra.")
     print(f"""
 Fatto. Da ora, dopo ogni aggiornamento:
   python tools\\pubblica_github.py     → pubblica le modifiche su GitHub (con il controllo dei segreti)

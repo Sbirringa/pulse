@@ -2,9 +2,9 @@
 
 In locale, dalla cartella del progetto (anche con PULSE accesa):
     backend\\.venv\\Scripts\\python tools\\pulisci.py              elenco utenti con quanto hanno pubblicato
-    backend\\.venv\\Scripts\\python tools\\pulisci.py gigi         riepilogo di @gigi e menu di pulizia
+    backend\\.venv\\Scripts\\python tools\\pulisci.py mario       riepilogo di @mario e menu di pulizia
 In produzione su Fly.io:
-    fly ssh console -C "python -m app.cleanup_cli gigi"
+    fly ssh console -C "python -m app.cleanup_cli mario"
 
 Voto segreto: lo strumento mostra QUANTI voti ha dato una persona, mai COSA ha votato.
 Prima di cancellare chiede sempre di riscrivere il nome utente per conferma.
