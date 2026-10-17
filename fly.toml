@@ -1,4 +1,5 @@
-# Nome dell'app su Fly: il sito è https://people-pulse.fly.dev (creata con tools/pubblica_fly.py).
+# Nome dell'app su Fly (creata con tools/pubblica_fly.py). Il sito è https://openpulse.it;
+# https://people-pulse.fly.dev continua a funzionare e porta lì in automatico.
 app = "people-pulse"
 primary_region = "cdg" # Parigi: vicino all'Italia. Scegli per Neon una regione EU (es. Francoforte).
 
@@ -6,6 +7,7 @@ primary_region = "cdg" # Parigi: vicino all'Italia. Scegli per Neon una regione 
 
 [env]
   PULSE_ENV = "production"
+  PULSE_CANONICAL_HOST = "openpulse.it"   # indirizzo ufficiale: fly.dev e www. reindirizzano qui
 
 [http_service]
   internal_port = 8080

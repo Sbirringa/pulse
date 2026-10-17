@@ -6,7 +6,7 @@ Pulse è un'app civica open source: le persone raccontano cosa succede dove vivo
 sondaggi sulla loro città o su tutta Italia. È pensata per la partecipazione, non per il rumore: niente
 algoritmi di engagement, voti segreti e dati personali cifrati.
 
-**Online:** [people-pulse.fly.dev](https://people-pulse.fly.dev)
+**Online:** [openpulse.it](https://openpulse.it)
 
 ---
 
@@ -87,6 +87,7 @@ In produzione l'app non parte se mancano le variabili obbligatorie.
 | `BUCKET_NAME`, `AWS_*` | in produzione | storage S3 per le foto |
 | `ADMIN_KEY` | no | chiave per le API di amministrazione da terminale |
 | `PULSE_SOURCE_URL` | no | link al codice sorgente (pulsante *Open source*) |
+| `PULSE_CANONICAL_HOST` | no | dominio ufficiale (es. `openpulse.it`): chi apre l'app da `*.fly.dev` o da `www.` viene reindirizzato lì |
 | `PULSE_MIN_RESULTS` / `PULSE_MIN_CITY_RESULTS` | no (5 / 5) | voti minimi per mostrare le percentuali / il dato per città |
 | `PULSE_PROPOSAL_GOAL` | no (20) | sostenitori necessari perché una proposta diventi sondaggio |
 | `PULSE_REPORT_HIDE_THRESHOLD` | no (3) | segnalazioni dopo cui un contenuto si nasconde |

@@ -147,6 +147,10 @@ MIN_AGE = int(os.getenv("PULSE_MIN_AGE", "14"))
 # Indirizzo pubblico del codice (es. https://github.com/tuonome/pulse). Vuoto = nell'app compare "In arrivo".
 _src = os.getenv("PULSE_SOURCE_URL", "").strip()
 SOURCE_URL = _src if _src.startswith("https://") else ""
+# Indirizzo ufficiale del sito (es. openpulse.it). Se impostato, chi apre l'app da NOME.fly.dev o da www.
+# viene portato lì in automatico. Vuoto = nessun reindirizzamento (in locale).
+CANONICAL_HOST = (os.getenv("PULSE_CANONICAL_HOST", "").strip().lower()
+                  .removeprefix("https://").removeprefix("http://").strip("/"))
 TERMS_VERSION = "2026-10-16"  # cambiala quando modifichi i Termini di utilizzo
 COOKIE_NAME = "pulse_session"
 COOKIE_SECURE = IS_PROD

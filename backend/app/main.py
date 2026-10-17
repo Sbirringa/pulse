@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 
 from fastapi import Depends, FastAPI, File, Form, HTTPException, Request, Response, UploadFile
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.gzip import GZipMiddleware
 from pydantic import BaseModel, Field, ValidationError, field_validator
@@ -18,6 +18,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from .config import (
+    CANONICAL_HOST,
     PROPOSAL_GOAL,
     REPORT_HIDE_THRESHOLD,
     SOURCE_URL,
@@ -108,6 +109,29 @@ CSP = (
 
 
 MAX_REQUEST_BYTES = MAX_POST_IMAGES * MAX_UPLOAD_BYTES + 1024 * 1024
+
+
+def _redirect_target(request: Request) -> str | None:
+    """Indirizzo ufficiale: chi arriva da NOME.fly.dev o da www.dominio viene portato sul dominio.
+
+    Solo questi due casi: i controlli di salute di Fly (che usano l'IP interno) non vengono toccati.
+    """
+    if not CANONICAL_HOST or request.url.path == "/api/health":
+        return None
+    host = (request.headers.get("host") or "").split(":")[0].lower()
+    if host == CANONICAL_HOST or not (host.endswith(".fly.dev") or host == f"www.{CANONICAL_HOST}"):
+        return None
+    query = f"?{request.url.query}" if request.url.query else ""
+    return f"https://{CANONICAL_HOST}{request.url.path}{query}"
+
+
+@app.middleware("http")
+async def canonical_host(request: Request, call_next):
+    target = _redirect_target(request)
+    if target:
+        # GET/HEAD: 301 (link e anteprime si aggiornano); altri metodi: 308 (stesso metodo e corpo)
+        return RedirectResponse(target, status_code=301 if request.method in ("GET", "HEAD") else 308)
+    return await call_next(request)
 
 
 @app.middleware("http")
@@ -883,7 +907,7 @@ def _index_html(request: Request | None = None) -> str | None:
     page = path.read_text(encoding="utf-8")
     if request is not None:
         # le anteprime dei link (WhatsApp, Telegram…) vogliono l'indirizzo completo dell'immagine
-        base = str(request.base_url).rstrip("/")
+        base = f"https://{CANONICAL_HOST}" if CANONICAL_HOST else str(request.base_url).rstrip("/")
         page = page.replace('content="/og.jpg"', f'content="{base}/og.jpg"')
     return page
 
